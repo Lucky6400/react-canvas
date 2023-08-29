@@ -201,6 +201,7 @@ function App() {
 
         <button onClick={handlePrevImage}>Previous Image</button> {" "}
         <button onClick={handleNextImage}>Next Image</button>
+        <button onClick={handleDownloadAnnotations}>Submit</button>
       </div>
       {selectedRectangleIndex !== null && (
         <div style={{ marginTop: '10px', display: 'flex', gap: '10px' }}>
@@ -211,7 +212,7 @@ function App() {
           {selectedRectangleIndex !== null && (
             <button onClick={handleRemoveRectangle}>🗑️</button>
           )}
-          <button onClick={handleDownloadAnnotations}>Download Annotations</button>
+          
           <button onClick={handleSaveChanges}>Save</button>
           <button onClick={handleUndoChanges}>Undo</button>
         </div>
