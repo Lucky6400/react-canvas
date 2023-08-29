@@ -100,6 +100,7 @@ function App() {
     rectangleRef.current = null;
   };
 
+  /* *********   Image controls   ********* */
   const handleNextImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % loadedImages.length);
     setSelectedRectangleIndex(null);
@@ -111,7 +112,10 @@ function App() {
     );
     setSelectedRectangleIndex(null);
   };
+  /********************************************/
 
+
+  // on click of rectangle, avoid listening stage click
   const handleRectangleClick = (index, e) => {
     console.log(index);
     setSelectedRectangleIndex(index);
@@ -119,11 +123,13 @@ function App() {
     if (e.stopPropagation) e.stopPropagation();
   };
 
+  // on click of image
   const handleStageClick = () => {
     console.log("stage clicked");
     setSelectedRectangleIndex(null);
   };
 
+  /* ------  resize logic  ------- */
   const handleVerticalMinus = () => {
     handleResize(0, -10);
   };
@@ -139,6 +145,8 @@ function App() {
   const handleHorizontalPlus = () => {
     handleResize(10, 0);
   };
+  /***********************************/
+
 
   const handleResize = (widthChange, heightChange) => {
     if (selectedRectangleIndex !== null) {
@@ -158,6 +166,7 @@ function App() {
     }
   };
 
+  // to add rectangles
   const handleTransformerChange = (newAttrs) => {
     const rects = [...rectangles];
     rects[selectedRectangleIndex] = {
@@ -167,12 +176,14 @@ function App() {
     setRectangles(rects);
   };
 
+  // remove rectangle on click of delete button
   const handleRemoveRectangle = () => {
     const updatedRectangles = rectangles.filter((_, index) => index !== selectedRectangleIndex);
     setRectangles(updatedRectangles);
     setSelectedRectangleIndex(null);
   };
 
+  // undo last changes on image
   const handleUndoChanges = () => {
     setRectangles([...savedRectangles]);
     setSelectedRectangleIndex(null);
